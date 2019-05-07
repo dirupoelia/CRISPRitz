@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/InfOmics/CRISPRitz/archive/master.tar.gz
-  sha256: c99307ebd756c26495dccd2ad32f6fc61816428e555d7ee5e11394adab7278c9
+  sha256: 13c8cefd29ed0114354af725f0f94317d96914c9ef161a195ec71c0141a99acf
 
 build:
   number: 0
