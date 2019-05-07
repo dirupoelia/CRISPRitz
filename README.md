@@ -1,4 +1,6 @@
-# CRISPRitz
+# CRISPRitz 
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/crispritz/README.html)
+
 CRISPRitz is a software package containing 5 different tools dedicated to perform predictive analysis and result assessement on CRISPR/Cas experiments.
 
 ![fig_pipeline_breve-1](https://user-images.githubusercontent.com/32717860/53018798-93e99700-3453-11e9-85a9-89eba18b18bb.png)
