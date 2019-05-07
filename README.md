@@ -52,7 +52,7 @@ crispritz.py index-genome <name_genome> <genomeDirectory> <pamFile>
 
 **SEARCH ON A GENOME INDEX WITH MISMATCHES AND BULGES (*search*):**
 ```
-crispritz search <genomeDirectory> <pamFile> <guidesFile> <outputFile> {-index} -mm <mm_num> [-bRNA <bRNA_num> | -bDNA <bDNA_num>] [-th <num_thread> (default: 1)] {-r,-p,-t}
+crispritz.py search <genomeDirectory> <pamFile> <guidesFile> <outputFile> {-index} (flag to search with index-genome, allow searching with bulges) -mm <mm_num> [-bRNA <bRNA_num> | -bDNA <bDNA_num>] [-th <num_thread>] {-r,-p,-t} (write only off-targets results, write only profiles, write both) [-var] (to activate search with IUPAC nomenclature)
 
 **INPUT**
 - <genomeDirectory>, the directory containing the genome FASTA files (.fa).
