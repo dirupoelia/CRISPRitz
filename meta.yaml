@@ -1,11 +1,11 @@
-{% set version = "1.0.0" %}
+{% set version = "1.0.5" %}
 
 package:
   name: crispritz
   version: {{ version }}
 
 source:
-  url: https://github.com/InfOmics/CRISPRitz/archive/master.tar.gz
+  url: https://github.com/InfOmics/CRISPRitz/archive/v{{ version }}.tar.gz
   sha256: 13c8cefd29ed0114354af725f0f94317d96914c9ef161a195ec71c0141a99acf
 
 build:
