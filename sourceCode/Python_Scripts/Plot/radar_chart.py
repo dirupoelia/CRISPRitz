@@ -145,7 +145,7 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
     plt.yticks(y_range, size=22)
 
     # plt.tight_layout()
-    plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
+    #plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
 
     window = plt.get_current_fig_manager().window
     screen_y = window.winfo_screenheight()
@@ -469,8 +469,7 @@ if len(sys.argv[9]) == 1:
                  horizontalalignment='center', color='black', size=25)
 
     # plt.tight_layout()
-    plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,
-                        right=0.99, wspace=0.05)
+    #plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,right=0.99, wspace=0.05)
 
     figure = plt.gcf()
     figure.set_size_inches(9.6, 5.4)
@@ -605,8 +604,7 @@ else:
         count = count+1
 
     # plt.tight_layout()
-    plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,
-                        right=0.99, wspace=0.1)
+    #plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,right=0.99, wspace=0.1)
 
     figure = plt.gcf()
     figure.set_size_inches(9.6, 5.4)
