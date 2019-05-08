@@ -152,7 +152,17 @@ crispritz.py generate-report <guide> -mm <mm_num or range mm_min-mm_max> -profil
 
 # USAGE EXAMPLE
 
-**BEFORE START TESTING, YOU NEED TO DOWNLAOD SOME FILE, USE THE SCRIPT PROVIDED TO DO SO**
+**INSTALL THE TOOL (CONDA(LINUX 64 ONLY) or DOCKER(ALL-PLATFORMS)**
+```
+CONDA
+conda install crispritz
+
+DOCKER
+docker run pinellolab/crispritz
+
+```
+
+**BEFORE START TESTING, YOU NEED TO DOWNLAOD SOME FILE, USE THE SCRIPT PROVIDED TO DO SO (SKIP THIS PART IF YOU ARE USING THE DOCKER IMAGE)**
 ```
 bash download_test_files.sh
 
