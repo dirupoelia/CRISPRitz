@@ -158,7 +158,7 @@ CONDA
 conda install crispritz
 
 DOCKER
-docker run -it pinellolab/crispritz
+docker run -v ${PWD}:/root/CRISPRitz/user_data -it pinellolab/crispritz
 
 ```
 
