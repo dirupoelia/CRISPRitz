@@ -18,6 +18,11 @@ plt.style.use('seaborn-poster')
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 
+
+window = plt.get_current_fig_manager().window
+screen_y = window.winfo_screenheight()
+screen_x = window.winfo_screenwidth()
+
 if len(sys.argv) < 6:
     print("example of call: python radar_chart.py guidesProfileFile guidesExtendedProfileFile exonsCountFile intronsCountFile promotersCountFile DNAseCountFile CTCFCountFile guidetoanalyze missmatch")
     exit()
@@ -146,10 +151,14 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
 
     # plt.tight_layout()
     plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
-    
-	 figure = plt.gcf()
-    figure.set_size_inches(16, 14)
-    plt.savefig("summary_histogram_"+str(uppermm) +
+
+    window = plt.get_current_fig_manager().window
+    screen_y = window.winfo_screenheight()
+    screen_x = window.winfo_screenwidth()
+
+    figure = plt.gcf()
+    figure.set_size_inches(screen_x, screen_y)
+    plt.savefig("summary_histogram_" + str(uppermm) +
                 ".svg", format="svg", dpi=200)
     # plt.show()
 
@@ -469,7 +478,7 @@ if len(sys.argv[9]) == 1:
                         right=0.99, wspace=0.05)
 
     figure = plt.gcf()
-    figure.set_size_inches(16, 14)
+    figure.set_size_inches(screen_x, screen_y)
 
     plt.savefig("summary_single_guide_"+str(guide) +
                 "_"+str(uppermm)+".svg", format="svg", dpi=200)
@@ -605,7 +614,7 @@ else:
                         right=0.99, wspace=0.1)
 
     figure = plt.gcf()
-    figure.set_size_inches(16, 14)
+    figure.set_size_inches(screen_x, screen_y)
 
     plt.savefig("summary_multiple_guides_"+str(guide)+"_" +
                 str(lowermm)+"-"+str(uppermm)+".svg", format="svg", dpi=200)
