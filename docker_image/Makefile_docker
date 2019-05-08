@@ -1,5 +1,5 @@
 #compile crispritz cpp softwares
 crispritz:
-	g++ -std=c++11 -O3 -fopenmp ../sourceCode/CRISPR-Cas-Tree/main.cpp -o ../buildTST
-	g++ -std=c++11 -O3 -fopenmp ../sourceCode/CRISPR-Cas-Tree/searchOnTST.cpp ../sourceCode/CRISPR-Cas-Tree/detailedOutput.cpp ../sourceCode/CRISPR-Cas-Tree/convert.cpp -I ../sourceCode/CRISPR-Cas-Tree/include -o ../searchTST
-	g++ -std=c++11 -O3 -fopenmp ../sourceCode/CRISPRofiler/main.cpp ../sourceCode/CRISPRofiler/profiling.cpp ../sourceCode/CRISPRofiler/guide_searching.cpp ../sourceCode/CRISPRofiler/pam_searching.cpp ../sourceCode/CRISPRofiler/pre_computation.cpp ../sourceCode/CRISPRofiler/reading.cpp ../sourceCode/CRISPRofiler/analysis.cpp -o ../searchBruteForce
+	g++ -std=c++11 -O3 -fopenmp sourceCoCRISPR-Cas-Trmain.cpp -o buildTST
+	g++ -std=c++11 -O3 -fopenmp sourceCoCRISPR-Cas-TrsearchOnTST.cpp sourceCoCRISPR-Cas-TrdetailedOutput.cpp sourceCoCRISPR-Cas-Trconvert.cpp -I sourceCoCRISPR-Cas-Trinclude -o searchTST
+	g++ -std=c++11 -O3 -fopenmp sourceCoCRISPRofilmain.cpp sourceCoCRISPRofilprofiling.cpp sourceCoCRISPRofilguide_searching.cpp sourceCoCRISPRofilpam_searching.cpp sourceCoCRISPRofilpre_computation.cpp sourceCoCRISPRofilreading.cpp sourceCoCRISPRofilanalysis.cpp -o searchBruteForce
