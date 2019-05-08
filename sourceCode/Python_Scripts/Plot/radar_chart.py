@@ -145,7 +145,7 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
     plt.yticks(y_range, size=22)
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
+    #plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
     plt.savefig("summary_histogram_"+str(uppermm)+".svg", format="svg")
     # plt.show()
 
@@ -461,8 +461,7 @@ if len(sys.argv[9]) == 1:
                  horizontalalignment='center', color='black', size=25)
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,
-                        right=0.99, wspace=0.05)
+    #plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,right=0.99, wspace=0.05)
 
     plt.savefig("summary_single_guide_"+str(guide)+"_"+str(uppermm)+".svg", format="svg")
     # plt.show()
@@ -593,8 +592,7 @@ else:
         count = count+1
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,
-                        right=0.99, wspace=0.1)
+    #plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,right=0.99, wspace=0.1)
 
     plt.savefig("summary_multiple_guides_"+str(guide)+"_"+str(lowermm)+"-"+str(uppermm)+".svg", format="svg")
     plt.show()
