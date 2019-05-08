@@ -188,7 +188,7 @@ pam/pamNGG.txt, path to a text file containing the PAM (e.g., NNNNNNNNNNNNNNNNNN
 
 **SEARCH ON A GENOME INDEX WITH MISMATCHES AND BULGES (*search*):**
 ```
-crispritz.py search genome_library/NGG_CHR22_HG19/ pam/pamNGG.txt emx1_guide/EMX1.txt emx1.chr22 -index -mm 4 -bDNA 1 -bRNA 1 -th 2 -r
+crispritz.py search genome_library/NGG_CHR22_HG19/ pam/pamNGG.txt guides/EMX1.txt emx1.chr22 -index -mm 4 -bDNA 1 -bRNA 1 -th 2 -r
 
 **INPUT**
 - genome_library/NGG_CHR22_HG19/, the directory containing the genome FASTA files (.fa).
@@ -209,7 +209,7 @@ pam/pamNGG.txt, path to a text file containing the PAM (e.g., NNNNNNNNNNNNNNNNNN
 
 **SEARCH ON A GENOME WITHOUT INDEXING WITH MISMATCHES ONLY (*search*):**
 ```
-crispritz.py search chr22_hg19/ pam/pamNGG.txt emx1_guide/EMX1.txt emx1.chr22 -mm 4 -t
+crispritz.py search chr22_hg19/ pam/pamNGG.txt guides/EMX1.txt emx1.chr22 -mm 4 -t
 
 **INPUT**
 - chr22_hg19/, the directory containing the genome FASTA files (.fa).
@@ -227,7 +227,7 @@ pam/pamNGG.txt, path to a text file containing the PAM (e.g., NNNNNNNNNNNNNNNNNN
 
 **ANNOTATE RESULTS OBTAINED IN A PREVIOUS SEARCH PHASE (*annotate-results*):**
 ```
-crispritz.py annotate-results emx1_guide/EMX1.txt emx1.chr22.targets.txt emx1.chr22.annotated -exons chroms_bed/hg19_exon.bed -introns chroms_bed/hg19_intron.bed -promoters chroms_bed/hg19_promoter.bed -dnase chroms_bed/hg19_dnase.bed -ctcf chroms_bed/hg19_ctcf.bed
+crispritz.py annotate-results guides/EMX1.txt emx1.chr22.targets.txt emx1.chr22.annotated -exons chroms_bed/hg19_exon.bed -introns chroms_bed/hg19_intron.bed -promoters chroms_bed/hg19_promoter.bed -dnase chroms_bed/hg19_dnase.bed -ctcf chroms_bed/hg19_ctcf.bed
 
 **INPUT**
 - emx1_guide/EMX1.txt, path to a text file containing the sgRNA sequence(s). THE LENGTH OF GUIDE MUST BE EQUAL TO THE LENGTH OF PAM SEQUENCE.
