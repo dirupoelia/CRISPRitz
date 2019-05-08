@@ -12,16 +12,16 @@ import sys
 from itertools import islice
 import glob
 import warnings
+import tkinter as tk
 warnings.filterwarnings("ignore")
 
 plt.style.use('seaborn-poster')
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 
-
-window = plt.get_current_fig_manager().window
-screen_y = window.winfo_screenheight()
-screen_x = window.winfo_screenwidth()
+root = tk.Tk()
+screen_x = root.winfo_screenwidth()
+screen_y = root.winfo_screenheight()
 
 if len(sys.argv) < 6:
     print("example of call: python radar_chart.py guidesProfileFile guidesExtendedProfileFile exonsCountFile intronsCountFile promotersCountFile DNAseCountFile CTCFCountFile guidetoanalyze missmatch")
