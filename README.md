@@ -158,7 +158,7 @@ CONDA
 conda install crispritz
 
 DOCKER
-docker run pinellolab/crispritz
+docker run -it pinellolab/crispritz
 
 ```
 
