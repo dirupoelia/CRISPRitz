@@ -146,7 +146,7 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
 
     plt.tight_layout()
     plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
-    plt.savefig("summary_histogram", format="svg")
+    plt.savefig("summary_histogram "+str(uppermm)+".svg", format="svg")
     # plt.show()
 
 
@@ -464,7 +464,7 @@ if len(sys.argv[9]) == 1:
     plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,
                         right=0.99, wspace=0.05)
 
-    plt.savefig("summary_single_guide", format="svg")
+    plt.savefig("summary_single_guide "+str(uppermm)+".svg", format="svg")
     # plt.show()
 
 else:
@@ -596,5 +596,5 @@ else:
     plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,
                         right=0.99, wspace=0.1)
 
-    plt.savefig("summary_multiple_guides", format="svg")
+    plt.savefig("summary_multiple_guides "+str(guide)+" "+str(lowermm)+"-"+str(uppermm)+".svg", format="svg")
     plt.show()
