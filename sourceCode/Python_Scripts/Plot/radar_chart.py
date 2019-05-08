@@ -130,15 +130,15 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
     plt.legend((p1[0], p2[0]), ('Reference Genome',
                                 'Enriched Genome'), fontsize=30)
 
-    #plt.xlim(0, len(string))
-    #plt.set_ylim([1, 1.5])
+    # plt.xlim(0, len(string))
+    # plt.set_ylim([1, 1.5])
     plt.title('Relative Increase Enriched/Reference Genome with ' +
               str(uppermm) + ' Mismatches', size=25)
     # plt.xlabel('Annotations')
     for k in range(0, 6):
         plt.annotate('%.2fx' % percentageGain[k, uppermm], [
                      k+0.05, arraySummaryCountTwo[k, uppermm]+(max(arraySummaryCountTwo[:, uppermm])/100)], size=22)
-    #plt.ylim([0, max(arraySummaryCountTwo[:, uppermm])+2000],size=25)
+    # plt.ylim([0, max(arraySummaryCountTwo[:, uppermm])+2000],size=25)
 
     plt.xticks(ind+0.25, ['Off-targets', 'Exons',
                           'Introns', 'CTCF', 'DNAse', 'Promoters'], size=25)
@@ -146,7 +146,9 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
 
     plt.tight_layout()
     plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
-    plt.show()
+    plt.savefig("summary_histogram", format="svg")
+    # plt.show()
+
 
 # reading extendend profile to obtain results over mismatches counts
 for line in inGuidesProfileExtended:
@@ -163,7 +165,7 @@ for line in inGuidesProfileExtended:
                                           x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20]))
             for line in inGuidesProfileExtended:
                 if count < 4:
-                    #print("count ",count,line)
+                    # print("count ",count,line)
                     x = line.split('\t')
                     y = str(x[20]).split('\n')
                     guidesExtendedProfile.append((x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9],
@@ -353,8 +355,8 @@ if len(sys.argv[9]) == 1:
 
     # Initialise the spider plot
     ax = plt.subplot(2, 2, 1, polar=True)
-    #ax=plt.subplot(1, 1, 1, polar=True)
-    #plt.title('RADAR CHART')
+    # ax=plt.subplot(1, 1, 1, polar=True)
+    # plt.title('RADAR CHART')
 
     labels = ['CTCF', 'DNAse', 'Exons', 'General', 'Introns', 'Promoters']
     # Draw one axe per variable + add labels labels yet
@@ -375,7 +377,8 @@ if len(sys.argv[9]) == 1:
 
     # Draw ylabels
     ax.set_rlabel_position(0)
-    plt.yticks([0, 0.25, 0.50, 0.75, 1], ["0", "0.25","0.50", "0.75"], color="black", size=18)
+    plt.yticks([0, 0.25, 0.50, 0.75, 1], ["0", "0.25",
+                                          "0.50", "0.75"], color="black", size=18)
     plt.ylim(0, 1)
 
     # Plot data
@@ -407,7 +410,8 @@ if len(sys.argv[9]) == 1:
     table_data = np.concatenate((distance_data, offtarget_data), axis=1)
 
     plt.subplot(2, 2, 2)
-    table = plt.table(cellText=table_data, rowLabels=rows,colLabels=columns, loc='center', colWidths=[0.35 for x in columns])
+    table = plt.table(cellText=table_data, rowLabels=rows,
+                      colLabels=columns, loc='center', colWidths=[0.35 for x in columns])
     table.auto_set_font_size(False)
     table.set_fontsize(18)
     table.scale(1, 3)
@@ -445,18 +449,23 @@ if len(sys.argv[9]) == 1:
 
     plt.legend((p1[0], p2[0], p3[0], p4[0]), ('A', 'C', 'G', 'T'), fontsize=18)
 
-    table = plt.table(cellText=strArray, loc='bottom', cellLoc='center', rowLoc='bottom')
+    table = plt.table(cellText=strArray, loc='bottom',
+                      cellLoc='center', rowLoc='bottom')
     table.auto_set_font_size(False)
     table.set_fontsize(18)
     table.scale(1, 1.6)
     table.xticks = ([])
     table.yticks = ([])
 
-    plt.suptitle(str(missmatch)+" Mismatches",horizontalalignment='center', color='black', size=25)
+    plt.suptitle(str(missmatch)+" Mismatches",
+                 horizontalalignment='center', color='black', size=25)
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,right=0.99, wspace=0.05)
-    plt.show()
+    plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,
+                        right=0.99, wspace=0.05)
+
+    plt.savefig("summary_single_guide", format="svg")
+    # plt.show()
 
 else:
 
@@ -573,7 +582,7 @@ else:
     plt.figure(figsize=(1000/my_dpi, 1000/my_dpi), dpi=my_dpi)
 
     # Create a color palette:
-    #my_palette = plt.cm.get_cmap("Set2",(uppermm-lowermm)+1)
+    # my_palette = plt.cm.get_cmap("Set2",(uppermm-lowermm)+1)
 
     count = 1
     # Loop to plot
@@ -586,4 +595,6 @@ else:
     plt.tight_layout()
     plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,
                         right=0.99, wspace=0.1)
+
+    plt.savefig("summary_multiple_guides", format="svg")
     plt.show()
