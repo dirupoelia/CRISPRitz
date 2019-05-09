@@ -145,7 +145,7 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
     plt.yticks(y_range, size=22)
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.99)
+    plt.subplots_adjust(top=0.95, bottom=0.06, left=0.1, right=0.99)
 
     plt.savefig("summary_histogram_" + str(uppermm) + ".pdf", format="pdf")
     # plt.show()
@@ -397,7 +397,7 @@ if len(sys.argv[9]) == 1:
     # ax=plt.subplot(1, 1, 1, polar=True)
     # plt.title('RADAR CHART')
 
-    labels = ['CTCF', 'DNAse', 'Exons', 'General', 'Introns', 'Promoters']
+    labels = ['Exons', 'General', 'Introns', 'Promoters', 'DNAse', 'CTCF']
     # Draw one axe per variable + add labels labels yet
     plt.xticks(angles[:-1], labels, color='black', size=18)
     for label, rot in zip(ax.get_xticklabels(), angles):
