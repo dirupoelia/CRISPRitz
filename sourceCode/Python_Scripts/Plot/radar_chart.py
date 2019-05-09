@@ -188,11 +188,12 @@ for line in inGuidesProfile:
     line += "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t" + \
         "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"
     x = line.split('\t')
-    profileMissmatchGlobal.append((x[guide_len+6], x[guide_len+7], x[guide_len+8], x[guide_len+9],
-                                   x[guide_len+10], x[guide_len+11], x[guide_len+12], x[guide_len+13], x[guide_len+14], x[guide_len+15]))
+    profileMissmatchGlobal.append((x[guide_len+3], x[guide_len+4], x[guide_len+5], x[guide_len+6],
+                                   x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]))
     if str(x[0]) == guide:
-        arrayprofileMissmatch = np.array((x[guide_len+6], x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10],
-                                          x[guide_len+11], x[guide_len+12], x[guide_len+13], x[guide_len+14], x[guide_len+15]), dtype=int)
+        arrayprofileMissmatch = np.array((x[guide_len+3], x[guide_len+4], x[guide_len+5], x[guide_len+6],
+                                          x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]), dtype=int)
+
 
 # reading every count file to obtain results for the ecdf and percentile count for annotated type
 for line in inExonsCountFile:
@@ -268,8 +269,8 @@ if(geckoProfile != "no"):
         line += "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t" + \
             "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"
         x = line.split('\t')
-        profileMissmatchGlobal.append((x[guide_len+6], x[guide_len+7], x[guide_len+8], x[guide_len+9],
-                                       x[guide_len+10], x[guide_len+11], x[guide_len+12], x[guide_len+13], x[guide_len+14], x[guide_len+15]))
+        profileMissmatchGlobal.append((x[guide_len+3], x[guide_len+4], x[guide_len+5], x[guide_len+6],
+                                   x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]))
 
     # reading every count file to obtain results for the ecdf and percentile count for annotated type
     for line in inExonsCountFile:
@@ -499,8 +500,8 @@ if len(sys.argv[9]) == 1:
                  horizontalalignment='center', color='black', size=25)
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.90, bottom=0.07, left=0.04,
-                        right=0.99, wspace=0.05)
+    plt.subplots_adjust(top=0.90, bottom=0.07, left=0.05,
+                        right=0.99, wspace=0.1)
 
     plt.savefig("summary_single_guide_" + str(guide) +
                 "_"+str(uppermm) + ".pdf", format="pdf")
