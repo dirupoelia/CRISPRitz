@@ -265,6 +265,8 @@ if(geckoProfile != "no"):
     guide_len = len(guide)
     next(inGuidesProfile)
     for line in inGuidesProfile:
+        line += "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t" + \
+            "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"
         x = line.split('\t')
         profileMissmatchGlobal.append((x[guide_len+6], x[guide_len+7], x[guide_len+8], x[guide_len+9],
                                        x[guide_len+10], x[guide_len+11], x[guide_len+12], x[guide_len+13], x[guide_len+14], x[guide_len+15]))
