@@ -647,10 +647,8 @@ if guidesProfileFile != "no":
             # plt.subplot(3,4,count*2)
             count = count+1
 
-        plt.tight_layout()
-        plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,
-                            right=0.99, wspace=0.1)
+        #plt.tight_layout()
+        #plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,right=0.99, wspace=0.1)
 
-        plt.savefig("summary_multiple_guides_" + str(guide) + "_" +
-                    str(lowermm) + "-" + str(uppermm) + "mm" + ".pdf", format="pdf")
+        plt.savefig("summary_multiple_guides_" + str(guide) + "_" + str(lowermm) + "-" + str(uppermm) + "mm" + ".pdf", format="pdf")
         #plt.show()
