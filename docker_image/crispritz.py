@@ -214,15 +214,15 @@ def annotateResults():
     for line in inAnnotationsFile:
         x = line.split("\t")
         if str(x[0]) == "EXONS":
-            exonFile = str(x[1])
+            exonFile = str(x[1]).rstrip()
         elif str(x[0]) == "INTRONS":
-            intronFile = str(x[1])
+            intronFile = str(x[1]).rstrip()
         elif str(x[0]) == "CTCF":
-            ctcfFile = str(x[1])
+            ctcfFile = str(x[1]).rstrip()
         elif str(x[0]) == "PROMOTERS":
-            promoterFile = str(x[1])
+            promoterFile = str(x[1]).rstrip()
         elif str(x[0]) == "DNASE":
-            dnaseFile = str(x[1])
+            dnaseFile = str(x[1]).rstrip()
 
     # exonFile = "no"
     # if "-exons" in sys.argv[1:]:
