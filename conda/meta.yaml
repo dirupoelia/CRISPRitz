@@ -1,0 +1,52 @@
+{% set version = "1.0.6" %}
+
+package:
+  name: crispritz
+  version: {{ version }}
+
+source:
+  url: https://github.com/InfOmics/CRISPRitz/archive/v{{ version }}.tar.gz
+  sha256: 
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - {{compiler('cxx')}} =5.4 # [not osx]
+    - {{compiler('cxx')}} # [osx]
+    - make
+    - boost
+    
+  host:
+    - intervaltree
+    - matplotlib
+    - pandas
+    - scipy
+    - numpy
+    - more-itertools
+    - statsmodels
+    - bcftools
+    - boost
+    - tk
+    
+  run:
+    - intervaltree
+    - matplotlib
+    - pandas
+    - scipy
+    - numpy
+    - more-itertools
+    - statsmodels
+    - bcftools
+    - boost
+    - tk
+    
+test:
+  commands:
+    - crispritz.py
+
+about:
+  home: https://github.com/InfOmics/CRISPRitz
+  license: GPL3
+  summary: CRISPRitz, tool package for CRISPR experiments assessment and analysis.
