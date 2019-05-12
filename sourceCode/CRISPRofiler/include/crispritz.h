@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdio.h>
 #include <omp.h>
 #include <ctype.h>
 #include <vector>
