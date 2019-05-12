@@ -8,7 +8,8 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 #include <cmath>
-
+#include <stdio.h>
+#include <string.h>
 #include <bitset>
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
