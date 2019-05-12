@@ -14,7 +14,7 @@
 #include <cmath>
 #include <iterator>
 #include <omp.h>
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 #include <bitset>
 #include <parallel/algorithm>
 #include <iomanip>
