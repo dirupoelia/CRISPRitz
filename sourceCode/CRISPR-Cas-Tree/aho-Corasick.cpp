@@ -44,8 +44,8 @@ void buildMatchingMachine(string arr[], int k)
 {
 
 	// Initialize all values in output function as 0.
-	std::memset(g, -1, sizeof g);
-	std::memset(f, 0, sizeof f);
+	memset(g, -1, sizeof g);
+	memset(f, 0, sizeof f);
 
 	// Initially, we just have the 0 state
 	int state = 0, currState = 0, index = 0;
@@ -72,7 +72,7 @@ void buildMatchingMachine(string arr[], int k)
 	}
 
 	///Failure function
-	std::queue<int> q;
+	queue<int> q;
 	int s, fail;
 	for (i = 0; i < MAXC; i++)
 	{
