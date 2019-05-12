@@ -129,7 +129,8 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
     #                     (intergenicGainTwo[0, uppermm-1]/intergenicGainOne[0, uppermm-1])))
 
     ind = np.arange(0, 6, 1)
-    y_range = np.arange(0, max(arraySummaryCountTwo[:, uppermm]) + math.ceil(max(arraySummaryCountTwo[:, uppermm])/10), math.ceil(max(arraySummaryCountTwo[:, uppermm])/5))
+    y_range = np.arange(0, max(arraySummaryCountTwo[:, uppermm]) + math.ceil(max(
+        arraySummaryCountTwo[:, uppermm])/10), math.ceil(max(arraySummaryCountTwo[:, uppermm])/5))
     width = 0.5
 
     p1 = plt.bar(
@@ -157,7 +158,8 @@ if summaryCountOne != "no" and summaryCountTwo != "no":
     plt.tight_layout()
     plt.subplots_adjust(top=0.95, bottom=0.06, left=0.1, right=0.99)
 
-    plt.savefig("summary_histogram_" + str(uppermm) + "mm" + ".pdf", format="pdf")
+    plt.savefig("summary_histogram_" + str(uppermm) +
+                "mm" + ".pdf", format="pdf")
     # plt.show()
 
 if guidesExtendedProfileFile != "no":
@@ -169,25 +171,23 @@ if guidesExtendedProfileFile != "no":
             # line=inGuidesProfileExtended.readline()
             for ciao in range(0, uppermm+1):
                 line = inGuidesProfileExtended.readline()
-                # print(line)
                 count = 0
                 x = line.split('\t')
                 guidesExtendedProfile.append((x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9],
-                                            x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20]))
+                                              x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20]))
                 for line in inGuidesProfileExtended:
-                    if count < 4:
-                        # print("count ",count,line)
+                    if count < 6:
+                        line = line.rstrip()
                         x = line.split('\t')
-                        y = str(x[20]).split('\n')
+                        #y = str(x[20]).split('\n')
                         guidesExtendedProfile.append((x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9],
-                                                    x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], y[0]))
+                                                      x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17], x[18], x[19], x[20]))
                         count += 1
                     else:
                         break
             break
     arrayguidesExtendedProfile = np.array(guidesExtendedProfile, dtype=int)
-    arrayguidesExtendedProfile.shape = (5*((uppermm-0)+1), 20)
-
+    arrayguidesExtendedProfile.shape = (7*((uppermm-0)+1), 20)
 
 
 if guidesProfileFile != "no":
@@ -199,10 +199,10 @@ if guidesProfileFile != "no":
             "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"
         x = line.split('\t')
         profileMissmatchGlobal.append((x[guide_len+3], x[guide_len+4], x[guide_len+5], x[guide_len+6],
-                                    x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]))
+                                       x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]))
         if str(x[0]) == guide:
             arrayprofileMissmatch = np.array((x[guide_len+3], x[guide_len+4], x[guide_len+5], x[guide_len+6],
-                                            x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]), dtype=int)
+                                              x[guide_len+7], x[guide_len+8], x[guide_len+9], x[guide_len+10], x[guide_len+11], x[guide_len+12]), dtype=int)
 
 if exonsCountFile != "no":
     # reading every count file to obtain results for the ecdf and percentile count for annotated type
@@ -215,7 +215,7 @@ if exonsCountFile != "no":
         if str(x[0]) == guide:
             arrayexonsMissmatch = np.array(
                 (x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10]), dtype=int)
-    
+
 if intronsCountFile != "no":
     for line in inIntronsCountFile:
         line += "0"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t" + \
@@ -326,23 +326,23 @@ if guidesProfileFile != "no":
     arrayprofileMissmatchGlobal = np.array(profileMissmatchGlobal, dtype=int)
     arrayexonsMissmatchGlobal = np.array(exonsMissmatchGlobal, dtype=int)
     arrayintronsMissmatchGlobal = np.array(intronsMissmatchGlobal, dtype=int)
-    arraypromotersMissmatchGlobal = np.array(promotersMissmatchGlobal, dtype=int)
+    arraypromotersMissmatchGlobal = np.array(
+        promotersMissmatchGlobal, dtype=int)
     arrayDNAseMissmatchGlobal = np.array(DNAseMissmatchGlobal, dtype=int)
     arrayCTCFMissmatchGlobal = np.array(CTCFMissmatchGlobal, dtype=int)
 
     CTCFdistance = [[0 for x in range(0, uppermm+1)]
                     for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
     Exonsdistance = [[0 for x in range(0, uppermm+1)]
-                    for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
+                     for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
     Intronsdistance = [[0 for x in range(0, uppermm+1)]
-                    for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
+                       for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
     Promotersdistance = [[0 for x in range(0, uppermm+1)]
-                        for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
+                         for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
     Generaldistance = [[0 for x in range(0, uppermm+1)]
-                    for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
+                       for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
     DNAsedistance = [[0 for x in range(0, uppermm+1)]
-                    for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
-
+                     for y in range(np.size(arrayCTCFMissmatchGlobal, 0))]
 
     for i in range(0, uppermm+1):
 
@@ -381,7 +381,7 @@ if guidesProfileFile != "no":
     arrayDNAsedistance = np.array(DNAsedistance, dtype=int)
 
 if guidesProfileFile != "no":
-# SINGLE MISMATCH COUNT
+    # SINGLE MISMATCH COUNT
     if len(sys.argv[9]) == 1:
         # Set data
         df = pd.DataFrame({
@@ -412,7 +412,8 @@ if guidesProfileFile != "no":
         # ax=plt.subplot(1, 1, 1, polar=True)
         # plt.title('RADAR CHART')
 
-        labels = ['CTCF', 'DNAse', 'Exons', 'General', 'Introns', 'Promoters']
+        #labels = ['CTCF', 'DNAse', 'Exons', 'General', 'Introns', 'Promoters']
+        labels = list(df.columns.values[1:])
         # Draw one axe per variable + add labels labels yet
         plt.xticks(angles[:-1], labels, color='black', size=18)
         for label, rot in zip(ax.get_xticklabels(), angles):
@@ -432,7 +433,7 @@ if guidesProfileFile != "no":
         # Draw ylabels
         ax.set_rlabel_position(0)
         plt.yticks([0, 0.25, 0.50, 0.75, 1], ["0", "0.25",
-                                            "0.50", "0.75"], color="black", size=18)
+                                              "0.50", "0.75"], color="black", size=18)
         plt.ylim(0, 1)
 
         # Plot data
@@ -460,19 +461,19 @@ if guidesProfileFile != "no":
         offtarget_data = np.vstack((arrayprofileMissmatch[uppermm], arrayexonsMissmatch[uppermm], arrayintronsMissmatch[uppermm],
                                     arraypromotersMissmatch[uppermm], arrayDNAseMissmatch[uppermm], arrayCTCFMissmatch[uppermm]))
         distance_data = np.vstack((general_distance, exons_distance,
-                                introns_distance, promoters_distance, dnase_distance, ctcf_distance))
+                                   introns_distance, promoters_distance, dnase_distance, ctcf_distance))
         table_data = np.concatenate((distance_data, offtarget_data), axis=1)
 
         plt.subplot(2, 2, 2)
         table = plt.table(cellText=table_data, rowLabels=rows,
-                        colLabels=columns, loc='center', colWidths=[0.35 for x in columns])
+                          colLabels=columns, loc='center', colWidths=[0.35 for x in columns])
         table.auto_set_font_size(False)
         table.set_fontsize(18)
         table.scale(1, 3)
         plt.axis('off')
 
-        datacount = arrayguidesExtendedProfile[missmatch*5] / \
-            (max(arrayguidesExtendedProfile[missmatch*5]))
+        datacount = arrayguidesExtendedProfile[missmatch*7] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
         data = np.array(datacount, dtype=float)
         data = np.around(data, decimals=1)
         data.shape = (1, len(datacount))
@@ -480,16 +481,17 @@ if guidesProfileFile != "no":
         string = guide[0:20]
         strArray = np.array([list(string)])
 
-        A = arrayguidesExtendedProfile[missmatch*5+1] / \
-            (max(arrayguidesExtendedProfile[missmatch*5]))
-        C = arrayguidesExtendedProfile[missmatch*5+2] / \
-            (max(arrayguidesExtendedProfile[missmatch*5]))
-        G = arrayguidesExtendedProfile[missmatch*5+3] / \
-            (max(arrayguidesExtendedProfile[missmatch*5]))
-        T = arrayguidesExtendedProfile[missmatch*5+4] / \
-            (max(arrayguidesExtendedProfile[missmatch*5]))
+        A = arrayguidesExtendedProfile[missmatch*7+1] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
+        C = arrayguidesExtendedProfile[missmatch*7+2] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
+        G = arrayguidesExtendedProfile[missmatch*7+3] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
+        T = arrayguidesExtendedProfile[missmatch*7+4] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
 
-        ind = np.arange(0, len(string), 1) + 0.15  # the x locations for the groups
+        # the x locations for the groups
+        ind = np.arange(0, len(string), 1) + 0.15
         width = 0.7  # the width of the bars: can also be len(x) sequence
 
         motif = plt.subplot(2, 1, 2, frameon=False)
@@ -501,10 +503,11 @@ if guidesProfileFile != "no":
         plt.xlim(0, len(string))
         plt.xticks([])
 
-        plt.legend((p1[0], p2[0], p3[0], p4[0]), ('A', 'C', 'G', 'T'), fontsize=18)
+        plt.legend((p1[0], p2[0], p3[0], p4[0]),
+                   ('A', 'C', 'G', 'T'), fontsize=18)
 
         table = plt.table(cellText=strArray, loc='bottom',
-                        cellLoc='center', rowLoc='bottom')
+                          cellLoc='center', rowLoc='bottom')
         table.auto_set_font_size(False)
         table.set_fontsize(18)
         table.scale(1, 1.6)
@@ -512,11 +515,11 @@ if guidesProfileFile != "no":
         table.yticks = ([])
 
         plt.suptitle(str(missmatch)+" Mismatches",
-                    horizontalalignment='center', color='black', size=25)
+                     horizontalalignment='center', color='black', size=25)
 
         plt.tight_layout()
         plt.subplots_adjust(top=0.90, bottom=0.07, left=0.05,
-                            right=0.99, wspace=0.1)
+                            right=0.99, wspace=0.12)
 
         plt.savefig("summary_single_guide_" + str(guide) +
                     "_"+str(uppermm) + "mm" + ".pdf", format="pdf")
@@ -555,7 +558,7 @@ if guidesProfileFile != "no":
             # Draw one axe per variable + add labels labels yet
 
             plt.xticks(angles[:-1], ['CTCF'+' ('+str(arrayCTCFMissmatch[row])+')', 'DNAse'+' ('+str(arrayDNAseMissmatch[row])+')', 'Exons'+' ('+str(arrayexonsMissmatch[row])+')', 'General' +
-                                    ' ('+str(arrayprofileMissmatch[row])+')', 'Introns'+' ('+str(arrayintronsMissmatch[row])+')', 'Promoters'+' ('+str(arraypromotersMissmatch[row])+')'], color='black')
+                                     ' ('+str(arrayprofileMissmatch[row])+')', 'Introns'+' ('+str(arrayintronsMissmatch[row])+')', 'Promoters'+' ('+str(arraypromotersMissmatch[row])+')'], color='black')
             for label, rot in zip(ax.get_xticklabels(), angles):
                 if (rot == 0):
                     label.set_horizontalalignment("center")
@@ -569,7 +572,7 @@ if guidesProfileFile != "no":
             # Draw ylabels
             ax.set_rlabel_position(0)
             plt.yticks([0, 0.25, 0.50, 0.75], [
-                    "0", "0.25", "0.50", "0.75"], color="black")
+                "0", "0.25", "0.50", "0.75"], color="black")
             plt.ylim(0, 1)
 
             # Ind1
@@ -580,33 +583,33 @@ if guidesProfileFile != "no":
 
             colors = ["white", "white", "white", "white", "white", "white"]
             texts = ["CTCF:"+' '+str(max(arrayCTCFMissmatchGlobal[:, row])), "DNAse:"+' '+str(max(arrayDNAseMissmatchGlobal[:, row])), "Exons:"+' '+str(max(arrayexonsMissmatchGlobal[:, row])), "General:" +
-                    ' '+str(max(arrayprofileMissmatchGlobal[:, row])), "Introns:"+' '+str(max(arrayintronsMissmatchGlobal[:, row])), "Promoters:"+' '+str(max(arraypromotersMissmatchGlobal[:, row]))]
+                     ' '+str(max(arrayprofileMissmatchGlobal[:, row])), "Introns:"+' '+str(max(arrayintronsMissmatchGlobal[:, row])), "Promoters:"+' '+str(max(arraypromotersMissmatchGlobal[:, row]))]
             patches = [mpatches.Patch(color=colors[i], label="{:s}".format(
                 texts[i])) for i in range(len(texts))]
             plt.legend(handles=patches, loc=(-0.65, 0.86), labelspacing=0.1,
-                    ncol=1, handlelength=0, handletextpad=0, title="Max Value")
+                       ncol=1, handlelength=0, handletextpad=0, title="Max Value")
 
             # Add a title
             plt.title(title, y=1.2)
 
         def make_motif(row, count):
 
-            datacount = arrayguidesExtendedProfile[row*5] / \
-                (max(arrayguidesExtendedProfile[row*5]))
+            datacount = arrayguidesExtendedProfile[row*7] / \
+                (max(arrayguidesExtendedProfile[row*7]))
             data = np.array(datacount, dtype=float)
             data = np.around(data, decimals=1)
             data.shape = (1, len(datacount))
 
             string = guide[0:20]
 
-            A = arrayguidesExtendedProfile[row*5+1] / \
-                (max(arrayguidesExtendedProfile[row*5]))
-            C = arrayguidesExtendedProfile[row*5+2] / \
-                (max(arrayguidesExtendedProfile[row*5]))
-            G = arrayguidesExtendedProfile[row*5+3] / \
-                (max(arrayguidesExtendedProfile[row*5]))
-            T = arrayguidesExtendedProfile[row*5+4] / \
-                (max(arrayguidesExtendedProfile[row*5]))
+            A = arrayguidesExtendedProfile[row*7+1] / \
+                (max(arrayguidesExtendedProfile[row*7]))
+            C = arrayguidesExtendedProfile[row*7+2] / \
+                (max(arrayguidesExtendedProfile[row*7]))
+            G = arrayguidesExtendedProfile[row*7+3] / \
+                (max(arrayguidesExtendedProfile[row*7]))
+            T = arrayguidesExtendedProfile[row*7+4] / \
+                (max(arrayguidesExtendedProfile[row*7]))
 
             # the x locations for the groups
             ind = np.arange(0, len(string), 1) + 0.15
@@ -624,7 +627,7 @@ if guidesProfileFile != "no":
             plt.xlim(0, len(string))
             plt.xticks([])
             table = plt.table(cellText=data, colLabels=string,
-                            loc='bottom', cellLoc='center')
+                              loc='bottom', cellLoc='center')
             # plt.xticks(ind)
             # table.set_fontsize(20))
             table.auto_set_font_size(False)
@@ -647,8 +650,9 @@ if guidesProfileFile != "no":
             # plt.subplot(3,4,count*2)
             count = count+1
 
-        #plt.tight_layout()
+        # plt.tight_layout()
         #plt.subplots_adjust(top=0.85, bottom=0.05, left=0.05,right=0.99, wspace=0.1)
 
-        plt.savefig("summary_multiple_guides_" + str(guide) + "_" + str(lowermm) + "-" + str(uppermm) + "mm" + ".pdf", format="pdf")
-        #plt.show()
+        plt.savefig("summary_multiple_guides_" + str(guide) + "_" +
+                    str(lowermm) + "-" + str(uppermm) + "mm" + ".pdf", format="pdf")
+        # plt.show()
