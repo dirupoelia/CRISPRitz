@@ -4,7 +4,7 @@ make
 mkdir -p $PREFIX/bin
 mkdir -p $PREFIX/opt/crispritz
 chmod 700 -R *
-cp crispritz.py $PREFIX/bin
+cp conda/crispritz.py $PREFIX/bin
 cp buildTST $PREFIX/opt/crispritz
 cp searchTST $PREFIX/opt/crispritz
 cp searchBruteForce $PREFIX/opt/crispritz

@@ -5,8 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/InfOmics/CRISPRitz/archive/v{{ version }}.tar.gz
-  sha256: 
+  url: https://github.com/InfOmics/CRISPRitz/archive/master.tar.gz 
 
 build:
   number: 1
