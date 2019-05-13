@@ -489,6 +489,10 @@ if guidesProfileFile != "no":
             (max(arrayguidesExtendedProfile[missmatch*7]))
         T = arrayguidesExtendedProfile[missmatch*7+4] / \
             (max(arrayguidesExtendedProfile[missmatch*7]))
+        DNA = arrayguidesExtendedProfile[missmatch*7+5] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
+        RNA = arrayguidesExtendedProfile[missmatch*7+6] / \
+            (max(arrayguidesExtendedProfile[missmatch*7]))
 
         # the x locations for the groups
         ind = np.arange(0, len(string), 1) + 0.15
@@ -500,11 +504,13 @@ if guidesProfileFile != "no":
         p2 = plt.bar(ind, C, width, bottom=A, align='edge')
         p3 = plt.bar(ind, G, width, bottom=A+C, align='edge')
         p4 = plt.bar(ind, T, width, bottom=C+G+A, align='edge')
+        p5 = plt.bar(ind, DNA, width, bottom=C+G+A+T, align='edge')
+        p6 = plt.bar(ind, RNA, width, bottom=C+G+A+T+DNA, align='edge')
         plt.xlim(0, len(string))
         plt.xticks([])
 
-        plt.legend((p1[0], p2[0], p3[0], p4[0]),
-                   ('A', 'C', 'G', 'T'), fontsize=18)
+        plt.legend((p1[0], p2[0], p3[0], p4[0], p5[0], p6[0]),
+                   ('A', 'C', 'G', 'T', 'D', 'R'), fontsize=18)
 
         table = plt.table(cellText=strArray, loc='bottom',
                           cellLoc='center', rowLoc='bottom')
