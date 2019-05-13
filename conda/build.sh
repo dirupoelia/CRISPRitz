@@ -1,6 +1,6 @@
 #!/bin/bash
 
-make
+make -f conda/Makefile
 mkdir -p $PREFIX/bin
 mkdir -p $PREFIX/opt/crispritz
 chmod 700 -R *

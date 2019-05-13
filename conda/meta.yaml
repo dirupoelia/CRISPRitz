@@ -1,4 +1,4 @@
-{% set version = "1.0.6" %}
+{% set version = "1.0.7" %}
 
 package:
   name: crispritz
@@ -16,6 +16,7 @@ requirements:
     - {{compiler('cxx')}} # [osx]
     - make
     - boost
+    - openmp
     
   host:
     - intervaltree
@@ -28,6 +29,7 @@ requirements:
     - bcftools
     - boost
     - tk
+    - openmp
     
   run:
     - intervaltree
@@ -40,6 +42,7 @@ requirements:
     - bcftools
     - boost
     - tk
+    - openmp
     
 test:
   commands:
@@ -49,3 +52,4 @@ about:
   home: https://github.com/InfOmics/CRISPRitz
   license: GPL3
   summary: CRISPRitz, tool package for CRISPR experiments assessment and analysis.
+  
