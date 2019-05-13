@@ -500,12 +500,12 @@ if guidesProfileFile != "no":
 
         motif = plt.subplot(2, 1, 2, frameon=False)
         # motif=plt.subplot(1,1,1)
-        p1 = plt.bar(ind, A, width, color='#d62728', align='edge')
-        p2 = plt.bar(ind, C, width, bottom=A, align='edge')
-        p3 = plt.bar(ind, G, width, bottom=A+C, align='edge')
-        p4 = plt.bar(ind, T, width, bottom=C+G+A, align='edge')
-        p5 = plt.bar(ind, DNA, width, bottom=C+G+A+T, align='edge')
-        p6 = plt.bar(ind, RNA, width, bottom=C+G+A+T+DNA, align='edge')
+        p1 = plt.bar(ind, A, width, color='red', align='edge')
+        p2 = plt.bar(ind, C, width, color='blue', bottom=A, align='edge')
+        p3 = plt.bar(ind, G, width, color='green', bottom=A+C, align='edge')
+        p4 = plt.bar(ind, T, width, color='purple', bottom=C+G+A, align='edge')
+        p5 = plt.bar(ind, DNA, width, color='magenta', bottom=C+G+A+T, align='edge')
+        p6 = plt.bar(ind, RNA, width, color='gold', bottom=C+G+A+T+DNA, align='edge')
         plt.xlim(0, len(string))
         plt.xticks([])
 
