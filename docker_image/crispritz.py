@@ -390,7 +390,7 @@ def generateReport():
         geckoCTCFCount = origin_path + \
             '/Python_Scripts/Plot/gecko/gecko.CTCF.Count.txt'
 
-    subprocess.run([origin_path + '/Python_Scripts/Plot/radar_chart.py', str(profileFile), str(extProfileFile), str(exonFile),
+    subprocess.run([origin_path + '/Python_Scripts/Plot/radar_chart_docker.py', str(profileFile), str(extProfileFile), str(exonFile),
                     str(intronFile), str(promoterFile), str(dnaseFile), str(
                         ctcfFile), guidesFile, str(mm), str(geckoProfile),
                     str(geckoExonsCount), str(geckoIntronsCount), str(
