@@ -18,7 +18,7 @@
 #include <omp.h>
 //#include <bits/stdc++.h>
 #include <bitset>
-#include <parallel/algorithm>
+#include <algorithm>
 #include <iomanip>
 #include <boost/dynamic_bitset.hpp>
 
