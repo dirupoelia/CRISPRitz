@@ -209,6 +209,11 @@ void saveProfileGuide(std::string guide, int guideI, int mism, int len_guide, in
         for (int j = 1; j < num_thr; j++)
         {
             profiling[i][guideI][0] += profiling[i][guideI][j];
+        }
+    }
+
+    for (int i = 0; i < profiling_rna.size(); i++){
+        for (int j = 1; j < num_thr; j++){
             profiling_rna[i][guideI][0] += profiling_rna[i][guideI][j];
             profiling_rna_mm[i][guideI][0] += profiling_rna_mm[i][guideI][j];
         }
