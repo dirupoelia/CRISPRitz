@@ -1,10 +1,10 @@
 #!/bin/bash
 
-make -f conda/Makefile_conda
+make -f Makefile_conda
 mkdir -p $PREFIX/bin
 mkdir -p $PREFIX/opt/crispritz
 chmod 700 -R *
-cp conda/crispritz.py $PREFIX/bin
+cp crispritz.py $PREFIX/bin
 cp buildTST $PREFIX/opt/crispritz
 cp searchTST $PREFIX/opt/crispritz
 cp searchBruteForce $PREFIX/opt/crispritz
