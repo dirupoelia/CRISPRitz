@@ -73,13 +73,15 @@ void detailedOutputFastBulgeDNA(int guideI, std::vector<std::bitset<4>> guide_bi
                                 int bulType, int mm, int len_guide, int bD, int bulDNA, std::vector<std::vector<std::vector<int>>> &profiling_dna,
                                 std::vector<std::vector<std::vector<int>>> &profiling_dna_mm,
                                 std::vector<std::string> &vec_guides, std::vector<std::string> &vec_targets, bool pam_at_start,
-                                std::vector<std::vector<std::vector<std::vector<int>>>> &ext_profiling_dna)
+                                std::vector<std::vector<std::vector<std::vector<int>>>> &ext_profiling_dna,
+                                std::vector<std::vector<std::vector<std::vector<std::vector<int>>>>> &ext_profiling)
 {
 
     int thr = omp_get_thread_num();
     int mm_inside_string = 0;
     int bul_inside_string = 0;
     std::vector<int> pos_bulges;
+    std::vector<std::pair<std::bitset<4>, int>> save_mm_pos; //array for the pair (base mm in bit, pos)
     for (int i = 0; i < guide_bit.size(); i++)
     {
 
@@ -102,11 +104,33 @@ void detailedOutputFastBulgeDNA(int guideI, std::vector<std::bitset<4>> guide_bi
                 }
                 mm_inside_string++;
                 profiling_dna_mm[i - bul_inside_string][guideI][thr]++;
+                save_mm_pos.push_back(std::make_pair(target_bit[i], i - bul_inside_string)); // controllo i
             }
     }
     profiling_dna_mm[len_guide + bulDNA + mm_inside_string * 2 + (bul_inside_string - 1)][guideI][thr]++;
     for (auto p : pos_bulges)
         ext_profiling_dna[guideI][mm_inside_string][p][thr]++;
+    
+    //extended matrix with save_mm_pos
+    for (int i = 0; i < save_mm_pos.size(); i++)
+    {
+        if (save_mm_pos[i].first[0])
+        {
+            ext_profiling[guideI][mm_inside_string][0][save_mm_pos[i].second][thr]++; //a
+        }
+        if (save_mm_pos[i].first[1])
+        {
+            ext_profiling[guideI][mm_inside_string][1][save_mm_pos[i].second][thr]++; //c
+        }
+        if (save_mm_pos[i].first[2])
+        {
+            ext_profiling[guideI][mm_inside_string][2][save_mm_pos[i].second][thr]++; //g
+        }
+        if (save_mm_pos[i].first[3])
+        {
+            ext_profiling[guideI][mm_inside_string][3][save_mm_pos[i].second][thr]++; //t
+        }
+    }
     vec_guides.push_back(g);
     vec_targets.push_back(t);
 }
@@ -115,13 +139,16 @@ void detailedOutputFastBulgeRNA(int guideI, std::vector<std::bitset<4>> guide_bi
                                 int bulType, int mm, int len_guide, int bD, int bulDNA, std::vector<std::vector<std::vector<int>>> &profiling_rna,
                                 std::vector<std::vector<std::vector<int>>> &profiling_rna_mm,
                                 std::vector<std::string> &vec_guides, std::vector<std::string> &vec_targets, bool pam_at_start,
-                                std::vector<std::vector<std::vector<std::vector<int>>>> &ext_profiling_rna)
+                                std::vector<std::vector<std::vector<std::vector<int>>>> &ext_profiling_rna,
+                                std::vector<std::vector<std::vector<std::vector<std::vector<int>>>>> &ext_profiling)
 {
 
     int thr = omp_get_thread_num();
     int mm_inside_string = 0;
     int bul_inside_string = 0;
     std::vector<int> pos_bulges;
+    std::vector<std::pair<std::bitset<4>, int>> save_mm_pos; //array for the pair (base mm in bit, pos)
+
     for (int i = 0; i < guide_bit.size(); i++)
     {
         if (i < len_guide)
@@ -136,11 +163,33 @@ void detailedOutputFastBulgeRNA(int guideI, std::vector<std::bitset<4>> guide_bi
                 }
                 mm_inside_string++;
                 profiling_rna_mm[i][guideI][thr]++;
+                save_mm_pos.push_back(std::make_pair(target_bit[i], i));
             }
     }
     profiling_rna_mm[len_guide + mm_inside_string * 2 + (bul_inside_string - 1)][guideI][thr]++;
     for (auto p : pos_bulges)
         ext_profiling_rna[guideI][mm_inside_string][p][thr]++;
+
+    //extended matrix with save_mm_pos
+    for (int i = 0; i < save_mm_pos.size(); i++)
+    {
+        if (save_mm_pos[i].first[0])
+        {
+            ext_profiling[guideI][mm_inside_string][0][save_mm_pos[i].second][thr]++; //a
+        }
+        if (save_mm_pos[i].first[1])
+        {
+            ext_profiling[guideI][mm_inside_string][1][save_mm_pos[i].second][thr]++; //c
+        }
+        if (save_mm_pos[i].first[2])
+        {
+            ext_profiling[guideI][mm_inside_string][2][save_mm_pos[i].second][thr]++; //g
+        }
+        if (save_mm_pos[i].first[3])
+        {
+            ext_profiling[guideI][mm_inside_string][3][save_mm_pos[i].second][thr]++; //t
+        }
+    }
 
     vec_guides.push_back(g);
     vec_targets.push_back(t);
@@ -243,67 +292,6 @@ void saveProfileGuide(std::string guide, int guideI, int mism, int len_guide, in
     }
     fileprofiling << "\n";
 
-    //save ext profiling
-    file_ext_profiling << ">" << guide << "\n";
-    file_ext_profiling << "\t";
-    for (int j = 0; j < len_guide; j++)
-    {
-        file_ext_profiling << "BP\t";
-    }
-    file_ext_profiling << "TARGETS\n";
-
-    for (int mm = 0; mm <= mism; mm++)
-    {
-        file_ext_profiling << mm << " MISMATCHES\t";
-        for (int j = 0; j < len_guide; j++)
-        {
-            int sum = 0;
-            for (int kk = 0; kk < 4; kk++)
-            {
-                sum = sum + ext_profiling[guideI][mm][kk][j][0];
-            }
-            file_ext_profiling << sum << "\t"; //std::accumulate(extended_matrix[j][0][mm], extended_matrix[j][4][mm], 0  ) << "\t";
-        }
-        file_ext_profiling << profiling[len_guide + mm][guideI][0] << "\n";
-        file_ext_profiling << "NUCLEOTIDE A\t";
-        for (int j = 0; j < len_guide; j++)
-        {
-            file_ext_profiling << ext_profiling[guideI][mm][0][j][0] << "\t";
-        }
-        file_ext_profiling << "\n";
-        file_ext_profiling << "NUCLEOTIDE C\t";
-        for (int j = 0; j < len_guide; j++)
-        {
-            file_ext_profiling << ext_profiling[guideI][mm][1][j][0] << "\t";
-        }
-        file_ext_profiling << "\n";
-        file_ext_profiling << "NUCLEOTIDE G\t";
-        for (int j = 0; j < len_guide; j++)
-        {
-            file_ext_profiling << ext_profiling[guideI][mm][2][j][0] << "\t";
-        }
-        file_ext_profiling << "\n";
-        file_ext_profiling << "NUCLEOTIDE T\t";
-        for (int j = 0; j < len_guide; j++)
-        {
-            file_ext_profiling << ext_profiling[guideI][mm][3][j][0] << "\t";
-        }
-        //file_ext_profiling << "\n\n";
-        file_ext_profiling << "\n";
-        file_ext_profiling << "Bulge DNA\t";
-        for (int j = 0; j < len_guide; j++){
-            file_ext_profiling << ext_profiling_dna[guideI][mm][j][0] << "\t";
-        }
-
-        file_ext_profiling << "\n";
-        file_ext_profiling << "Bulge RNA\t";
-        for (int j = 0; j < len_guide; j++){
-            file_ext_profiling << ext_profiling_rna[guideI][mm][j][0] << "\t";
-        }
-        file_ext_profiling << "\n\n";
-        
-    }
-
     //profiling dna
     file_profiling_dna << guide << "\t";
     for (int i = 0; i < (len_guide); i++) //+bulDNA
@@ -398,5 +386,70 @@ void saveProfileGuide(std::string guide, int guideI, int mism, int len_guide, in
         file_profiling_complete << bp_sum_complete[i] << "\t";
     
     file_profiling_complete << "\n";
+
+
+    //save ext profiling
+    int pos_bp_sum = len_guide + bulDNA;
+    file_ext_profiling << ">" << guide << "\n";
+    file_ext_profiling << "\t";
+    for (int j = 0; j < len_guide; j++)
+    {
+        file_ext_profiling << "BP\t";
+    }
+    file_ext_profiling << "TARGETS\n";
+
+    for (int mm = 0; mm <= mism; mm++)
+    {
+        file_ext_profiling << mm << " MISMATCHES\t";
+        for (int j = 0; j < len_guide; j++)
+        {
+            int sum = 0;
+            for (int kk = 0; kk < 4; kk++)
+            {
+                sum = sum + ext_profiling[guideI][mm][kk][j][0];
+            }
+            sum += ext_profiling_dna[guideI][mm][j][0] + ext_profiling_rna[guideI][mm][j][0];
+            file_ext_profiling << sum << "\t"; //std::accumulate(extended_matrix[j][0][mm], extended_matrix[j][4][mm], 0  ) << "\t";
+        }
+        file_ext_profiling << bp_sum_complete[pos_bp_sum] << "\n";//profiling[len_guide + mm][guideI][0] << "\n"; // total targets
+        pos_bp_sum++;
+        file_ext_profiling << "NUCLEOTIDE A\t";
+        for (int j = 0; j < len_guide; j++)
+        {
+            file_ext_profiling << ext_profiling[guideI][mm][0][j][0] << "\t";
+        }
+        file_ext_profiling << "\n";
+        file_ext_profiling << "NUCLEOTIDE C\t";
+        for (int j = 0; j < len_guide; j++)
+        {
+            file_ext_profiling << ext_profiling[guideI][mm][1][j][0] << "\t";
+        }
+        file_ext_profiling << "\n";
+        file_ext_profiling << "NUCLEOTIDE G\t";
+        for (int j = 0; j < len_guide; j++)
+        {
+            file_ext_profiling << ext_profiling[guideI][mm][2][j][0] << "\t";
+        }
+        file_ext_profiling << "\n";
+        file_ext_profiling << "NUCLEOTIDE T\t";
+        for (int j = 0; j < len_guide; j++)
+        {
+            file_ext_profiling << ext_profiling[guideI][mm][3][j][0] << "\t";
+        }
+        //file_ext_profiling << "\n\n";
+        file_ext_profiling << "\n";
+        file_ext_profiling << "Bulge DNA\t";
+        for (int j = 0; j < len_guide; j++){
+            file_ext_profiling << ext_profiling_dna[guideI][mm][j][0] << "\t";
+        }
+
+        file_ext_profiling << "\n";
+        file_ext_profiling << "Bulge RNA\t";
+        for (int j = 0; j < len_guide; j++){
+            file_ext_profiling << ext_profiling_rna[guideI][mm][j][0] << "\t";
+        }
+        file_ext_profiling << "\n\n";
+        
+    }
 
 }

@@ -557,9 +557,9 @@ void saveIndices( Tnode *p, int d, int bD, int bR, int bulType)
 					if (bulType == 0)
 						detailedOutputFast(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, profiling, ext_profiling, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start);
 					else if (bulType > 0)
-						detailedOutputFastBulgeDNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_dna, profiling_dna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_dna);
+						detailedOutputFastBulgeDNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_dna, profiling_dna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_dna, ext_profiling);
 					else
-						detailedOutputFastBulgeRNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_rna, profiling_rna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_rna);
+						detailedOutputFastBulgeRNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_rna, profiling_rna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_rna, ext_profiling);
 				}
 				else
 				{
@@ -572,9 +572,9 @@ void saveIndices( Tnode *p, int d, int bD, int bR, int bulType)
 				if (bulType == 0)
 					detailedOutputFast(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, profiling, ext_profiling, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start);
 				else if (bulType > 0)
-					detailedOutputFastBulgeDNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_dna, profiling_dna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_dna);
+					detailedOutputFastBulgeDNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_dna, profiling_dna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_dna, ext_profiling);
 				else
-					detailedOutputFastBulgeRNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_rna, profiling_rna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_rna);
+					detailedOutputFastBulgeRNA(guideI[thr], g_bit, t_bit, g, t, bulType, mm, len_guide, bD, bulDNA, profiling_rna, profiling_rna_mm, vecInGuide[thr], vecTargetOfGuide[thr], pam_at_start, ext_profiling_rna, ext_profiling);
 			}
 			
 			index = (targetOnDNA[thr][index].next + 1) * -1;
