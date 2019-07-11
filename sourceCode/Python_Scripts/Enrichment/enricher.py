@@ -160,10 +160,11 @@ genomeStr = "".join(genomeList)
 
 os.chdir("./SNPs_genome/")
 outFile = open(genomeHeader[1:(len(genomeHeader)-1)]+'.enriched'+'.fa', 'w')
-outFile.write(genomeHeader+genomeStr)
+outFile.write(genomeHeader+genomeStr+'\n')
 
 for line in inAltFile:
     x = line.split(' ')
+    x[0] = str(int(x[0])-1) #taaac
     if (',' not in x[2]) and (',' not in x[1]) and ('>' not in x[2]) and (len(x[1]) == 1) and (len(x[2]) > 1) and ('\n' not in genomeList[int(x[0]):(int(x[0])+len(x[2]))]):
         genomeList[int(x[0])] = str(x[2])
     elif (',' not in x[2]) and (',' not in x[1]) and ('>' not in x[2]) and (len(x[1]) > 1) and (len(x[2]) == 1) and ('\n' not in genomeList[int(x[0]):(int(x[0])+len(x[1]))]):
@@ -178,6 +179,6 @@ genomeStr = "".join(genomeList)
 os.chdir("../")
 os.chdir("./INDELs_genome/")
 outfile = open(genomeHeader[1:(len(genomeHeader)-1)]+'.indels'+'.fa', 'w')
-outfile.write(genomeHeader+genomeStr)
+outfile.write(genomeHeader+genomeStr+'\n')
 
 print("Done")
