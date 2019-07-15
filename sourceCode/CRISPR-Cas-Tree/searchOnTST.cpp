@@ -905,7 +905,7 @@ int main(int argc, char **argv)
 			//load tst
 			loadTST(gen_dir + "/" + file_stats_vec[file].file_name, albero, fileTree, numNodes, numLeaves);
 
-			double guidecut = 1000;
+			double guidecut = 50;
 			double newguide = numGuide;
 			int group_guide = ceil(newguide / guidecut);
 			for (jk = 0; jk < group_guide; jk++)
